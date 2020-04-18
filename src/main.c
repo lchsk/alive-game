@@ -16,48 +16,15 @@
 #define WINDOW_W 1280
 #define WINDOW_H 768
 
-typedef struct Level {
-    Entity ***entities;
-} Level;
+#define BULLETS_COUNT 100
 
-Entity *player;
-
-Level* level;
-
-Entity bullets[100];
-
-typedef struct BulletProperties {
-    int is_flying;
-    double speed_x;
-    double speed_y;
-} BulletProperties;
-
-BulletProperties bp[100];
-
-void reset_bullet_properties(BulletProperties *bp) {
-    bp->is_flying = 0;
-    bp->speed_x = 0;
-    bp->speed_y = 0;
-}
-
-Entity* get_bullet() {
-    for (int i = 0; i < 100; i++) {
-        Entity *e = &bullets[i];
-
-        BulletProperties *bp = e->properties;
-
-        if (!bp->is_flying) {
-            bp->is_flying = 1;
-            return e;
-        }
-    }
-
-    return NULL;
-}
+#define LEVEL_WIDTH 4
+#define LEVEL_HEIGHT 3
+#define TILE_ZOOM 4
+#define TILE_WIDTH 16
+#define TILE_HEIGHT 16
 
 
-void SETUP();
-void SETUP_LOADING_SCREEN();
 
 enum {
     TEX_TILE_1,
@@ -80,14 +47,59 @@ enum
 {
     FONT_FREE_SANS_26,
     FONTS_COUNT,
-} FONTS;
+};
+
+typedef struct Level {
+    Entity ***entities;
+} Level;
+
+Entity *player;
+
+Level* level;
+
+
+
+Entity bullets[BULLETS_COUNT];
+
+typedef struct BulletProperties {
+    int is_flying;
+    double speed_x;
+    double speed_y;
+} BulletProperties;
+
+BulletProperties bp[BULLETS_COUNT];
+
+void reset_bullet_properties(BulletProperties *bp) {
+    bp->is_flying = 0;
+    bp->speed_x = 0;
+    bp->speed_y = 0;
+}
+
+Entity* get_bullet() {
+    for (int i = 0; i < BULLETS_COUNT; i++) {
+        Entity *e = &bullets[i];
+
+        BulletProperties *bp = e->properties;
+
+        if (!bp->is_flying) {
+            bp->is_flying = 1;
+            return e;
+        }
+    }
+
+    return NULL;
+}
+
+
+void SETUP();
+void SETUP_LOADING_SCREEN();
 
 char* images[TEXTURES_COUNT];
 char* fonts[FONTS_COUNT];
 int fonts_sizes[FONTS_COUNT];
 
 
-int m1[4][3] = {
+int m1[LEVEL_WIDTH][LEVEL_HEIGHT] = {
     {TEX_TILE_1, TEX_TILE_2, TEX_TILE_3},
     {TEX_TILE_1, TEX_TILE_2, TEX_TILE_3},
     {TEX_TILE_1, TEX_TILE_2, TEX_TILE_4},
@@ -103,15 +115,12 @@ Entity *entity2;
 Level* build_level_1() {
     Level* level = calloc(1, sizeof(Level));
 
-    int width = 4;
-    int height = 3;
+    level->entities = calloc(LEVEL_WIDTH, sizeof(Entity**));
 
-    level->entities = calloc(width, sizeof(Entity**));
+    for (int i = 0; i < LEVEL_WIDTH; i++) {
+        level->entities[i] = calloc(LEVEL_HEIGHT, sizeof(Entity*));
 
-    for (int i = 0; i < width; i++) {
-        level->entities[i] = calloc(height, sizeof(Entity*));
-
-        for (int j = 0; j < height; j++) {
+        for (int j = 0; j < LEVEL_HEIGHT; j++) {
             Entity *e = entity_new();
 
             level->entities[i][j] = e;
@@ -119,8 +128,8 @@ Level* build_level_1() {
                                             m1[i][j]
                                             ]);
             e->sprite = sprite;
-            e->sprite->zoom = 4;
-            entity_set_position(e, i * 64, j * 64);
+            e->sprite->zoom = TILE_ZOOM;
+            entity_set_position(e, i * TILE_WIDTH * TILE_ZOOM, j * TILE_HEIGHT * TILE_ZOOM);
         }
     }
 
@@ -128,8 +137,8 @@ Level* build_level_1() {
 }
 
 void render_level(Level *level) {
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < LEVEL_WIDTH; i++) {
+        for (int j = 0; j < LEVEL_HEIGHT; j++) {
             entity_render(level->entities[i][j], engine->renderer, engine->_delta);
         }
     }
@@ -242,7 +251,7 @@ void render(Engine *engine) {
 
         entity_render(player, engine->renderer, engine->_delta);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < BULLETS_COUNT; i++) {
             Entity *e = &bullets[i];
             BulletProperties *bp = e->properties;
 
@@ -250,9 +259,8 @@ void render(Engine *engine) {
             entity_render(e, engine->renderer, engine->_delta);
         }
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < BULLETS_COUNT; i++) {
             Entity *e = &bullets[i];
-
 
             Pointd p = e->position;
 
@@ -293,7 +301,7 @@ void SETUP()
     sprite->zoom = 2;
     sprite->rotation = 0;
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < BULLETS_COUNT; i++) {
         Sprite *sprite = sprite_new(engine->loader->texture_loader->textures[TEX_BULLET]);
 
         Entity *e = &bullets[i];
