@@ -21,10 +21,6 @@
 
 #define BULLETS_COUNT 100
 
-typedef struct Level {
-    Entity ***entities;
-} Level;
-
 Entity *player;
 
 Level* level;
@@ -66,55 +62,10 @@ Entity* get_bullet() {
 void SETUP();
 void SETUP_LOADING_SCREEN();
 
-/* char* images[TEXTURES_COUNT]; */
-/* char* fonts[FONTS_COUNT]; */
-/* int fonts_sizes[FONTS_COUNT]; */
-
-
-int m1[LEVEL_WIDTH][LEVEL_HEIGHT] = {
-    {TEX_TILE_1, TEX_TILE_2, TEX_TILE_3},
-    {TEX_TILE_1, TEX_TILE_2, TEX_TILE_3},
-    {TEX_TILE_1, TEX_TILE_2, TEX_TILE_4},
-    {TEX_TILE_5, TEX_TILE_2, TEX_TILE_5},
-};
-
 
 Engine *engine;
 Entity *entity;
 Entity *entity2;
-
-
-Level* build_level_1() {
-    Level* level = calloc(1, sizeof(Level));
-
-    level->entities = calloc(LEVEL_WIDTH, sizeof(Entity**));
-
-    for (int i = 0; i < LEVEL_WIDTH; i++) {
-        level->entities[i] = calloc(LEVEL_HEIGHT, sizeof(Entity*));
-
-        for (int j = 0; j < LEVEL_HEIGHT; j++) {
-            Entity *e = entity_new();
-
-            level->entities[i][j] = e;
-            Sprite *sprite = sprite_new(engine->loader->texture_loader->textures[
-                                            m1[i][j]
-                                            ]);
-            e->sprite = sprite;
-            e->sprite->zoom = TILE_ZOOM;
-            entity_set_position(e, i * TILE_WIDTH * TILE_ZOOM, j * TILE_HEIGHT * TILE_ZOOM);
-        }
-    }
-
-    return level;
-}
-
-void render_level(Level *level) {
-    for (int i = 0; i < LEVEL_WIDTH; i++) {
-        for (int j = 0; j < LEVEL_HEIGHT; j++) {
-            entity_render(level->entities[i][j], engine->renderer, engine->_delta);
-        }
-    }
-}
 
 Pointd get_pos(Input *input) {
             double x_diff = (input->mouse_x - player->position.x);
@@ -186,7 +137,7 @@ void render(Engine *engine) {
 
         player->sprite->rotation = a;
 
-        render_level(level);
+        render_level(engine, level);
 
         if (engine->input->mouse_left_down) {
             Entity *e = get_bullet();
@@ -265,7 +216,7 @@ void SETUP_LOADING_SCREEN()
 
 void SETUP()
 {
-    level = build_level_1();
+    level = build_level_1(engine);
 
     player = entity_new();
     Sprite *sprite = sprite_new(engine->loader->texture_loader->textures[SURVIVOR_GUN]);

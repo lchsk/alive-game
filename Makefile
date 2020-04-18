@@ -28,6 +28,7 @@ ENGINE_SRC = \
 GAME_SRC = \
     ${GAME_DIR}/main.c \
     ${GAME_DIR}/textures.c \
+    ${GAME_DIR}/level.c \
     ${ENGINE_SRC}
 
 .PHONY: game
