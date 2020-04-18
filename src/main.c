@@ -13,41 +13,13 @@
 
 #include <engine212/engine.h>
 
+#include "textures.h"
+#include "level.h"
+
 #define WINDOW_W 1280
 #define WINDOW_H 768
 
 #define BULLETS_COUNT 100
-
-#define LEVEL_WIDTH 4
-#define LEVEL_HEIGHT 3
-#define TILE_ZOOM 4
-#define TILE_WIDTH 16
-#define TILE_HEIGHT 16
-
-
-
-enum {
-    TEX_TILE_1,
-    TEX_TILE_2,
-    TEX_TILE_3,
-    TEX_TILE_4,
-    TEX_TILE_5,
-
-    // Characters
-    SURVIVOR_GUN,
-    SURVIVOR_MACHINE,
-    SURVIVOR_SILENCER,
-
-    TEX_BULLET,
-
-    TEXTURES_COUNT,
-};
-
-enum
-{
-    FONT_FREE_SANS_26,
-    FONTS_COUNT,
-};
 
 typedef struct Level {
     Entity ***entities;
@@ -94,9 +66,9 @@ Entity* get_bullet() {
 void SETUP();
 void SETUP_LOADING_SCREEN();
 
-char* images[TEXTURES_COUNT];
-char* fonts[FONTS_COUNT];
-int fonts_sizes[FONTS_COUNT];
+/* char* images[TEXTURES_COUNT]; */
+/* char* fonts[FONTS_COUNT]; */
+/* int fonts_sizes[FONTS_COUNT]; */
 
 
 int m1[LEVEL_WIDTH][LEVEL_HEIGHT] = {
@@ -330,20 +302,6 @@ void run_main_loop() {
 
 void setup_resources()
 {
-    images[TEX_TILE_1] = "./assets/tile_01.png";
-    images[TEX_TILE_2] = "./assets/tile_02.png";
-    images[TEX_TILE_3] = "./assets/tile_03.png";
-    images[TEX_TILE_4] = "./assets/tile_04.png";
-    images[TEX_TILE_5] = "./assets/tile_05.png";
-
-    images[SURVIVOR_GUN] = "./assets/survivor1_gun.png";
-    images[SURVIVOR_MACHINE] = "./assets/survivor1_machine.png";
-    images[SURVIVOR_SILENCER] = "./assets/survivor1_silencer.png";
-
-    images[TEX_BULLET] = "./assets/spaceMissiles_015.png";
-
-    fonts[FONT_FREE_SANS_26] = "./assets/FreeSans.ttf";
-    fonts_sizes[FONT_FREE_SANS_26] = 30;
 }
 
 int main() {
