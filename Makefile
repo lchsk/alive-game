@@ -27,14 +27,18 @@ ENGINE_SRC = \
 
 GAME_SRC = \
     ${GAME_DIR}/main.c \
-    ${GAME_DIR}/textures.c \
+    ${GAME_DIR}/assets.c \
     ${GAME_DIR}/level.c \
     ${GAME_DIR}/bullets.c \
     ${GAME_DIR}/math.c \
     ${GAME_DIR}/player.c \
+    ${GAME_DIR}/enemies.c \
     ${ENGINE_SRC}
 
-.PHONY: game
+.PHONY: game web
 
 game:
 	$(CC) -I ${ENGINE_DIR_MAIN} ${GAME_SRC} ${CFLAGS} -o ${BIN} ${LIBS}
+
+web:
+	emcc -v -I ${ENGINE_DIR_MAIN} ${GAME_SRC} ${CFLAGS} ${LIBS} -s TOTAL_MEMORY=67108864 -s ALLOW_MEMORY_GROWTH=1 --use-preload-plugins -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s USE_SDL_TTF=2 -s USE_SDL_MIXER=2 -lm -s SDL2_IMAGE_FORMATS='["png"]' --preload-file assets -o alive.html
