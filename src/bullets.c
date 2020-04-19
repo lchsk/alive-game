@@ -26,6 +26,9 @@ void reset_bullet_properties(BulletProperties *bp) {
     bp->is_flying = 0;
     bp->speed_x = 0;
     bp->speed_y = 0;
+    bp->is_enemy = 0;
+    bp->strength = 10;
+    bp->speed_factor = 1;
 }
 
 void bullets_render(Engine *engine) {
@@ -33,10 +36,12 @@ void bullets_render(Engine *engine) {
             Entity *e = &bullets[i];
             BulletProperties *bp = e->properties;
 
-            entity_set_position(e, e->position.x + bp->speed_x * engine->_delta, e->position.y + bp->speed_y * engine->_delta);
-            entity_render(e, engine->renderer, engine->_delta);
+            if (bp->is_flying) {
+                entity_set_position(e, e->position.x + bp->speed_x * engine->_delta * bp->speed_factor, e->position.y + bp->speed_y * engine->_delta * bp->speed_factor);
+                entity_render(e, engine->renderer, engine->_delta);
 
-            refresh_bullet(e, engine);
+                refresh_bullet(e, engine);
+            }
         }
 }
 
@@ -50,4 +55,14 @@ static void refresh_bullet(Entity *e, Engine *engine) {
                 BulletProperties *bp = e->properties;
                 bp->is_flying = 0;
             }
+}
+
+void reset_bullets() {
+        for (int i = 0; i < BULLETS_COUNT; i++) {
+            Entity *e = &bullets[i];
+            BulletProperties *bp = e->properties;
+
+            reset_bullet_properties(bp);
+            entity_set_position(e, -100, -100);
+        }
 }
