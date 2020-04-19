@@ -2,8 +2,8 @@
     #define LEVEL_H
 
 
-#define LEVEL1_WIDTH 4
-#define LEVEL1_HEIGHT 3
+#define LEVEL1_WIDTH 20
+#define LEVEL1_HEIGHT 12
 
 #define TILE_ZOOM 4
 #define TILE_WIDTH 16
