@@ -29,6 +29,9 @@ GAME_SRC = \
     ${GAME_DIR}/main.c \
     ${GAME_DIR}/textures.c \
     ${GAME_DIR}/level.c \
+    ${GAME_DIR}/bullets.c \
+    ${GAME_DIR}/math.c \
+    ${GAME_DIR}/player.c \
     ${ENGINE_SRC}
 
 .PHONY: game
