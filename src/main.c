@@ -526,7 +526,7 @@ int main() {
     preloader->font_loader->paths = preloader_fonts;
     preloader->font_loader->sizes = preloader_fonts_sizes;
 
-    engine = engine_new(1280, 768, "alive game");
+    engine = engine_new(1280, 768, "Alive: the game");
     engine->requested_fps = 25;
     engine->loader = loader;
     engine->preloader = preloader;
