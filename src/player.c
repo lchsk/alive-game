@@ -1,9 +1,9 @@
 #include <engine212/engine.h>
 
-#include "player.h"
 #include "math.h"
+#include "player.h"
 
-void rotate_player(Entity* player, Input *input) {
+void rotate_player(Entity* player, Input* input) {
     double y_diff = input->mouse_y - player->position.y;
     double x_diff = input->mouse_x - player->position.x;
 

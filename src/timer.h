@@ -1,6 +1,5 @@
 #ifndef TIMER_H
-    #define TIMER_H
-
+#define TIMER_H
 
 typedef struct GameTimer {
     // In ms
@@ -8,5 +7,4 @@ typedef struct GameTimer {
     int since_last_enemy_launched;
 } GameTimer;
 
-
-    #endif /* TIMER_H */
+#endif /* TIMER_H */

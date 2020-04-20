@@ -58,4 +58,3 @@ char* sounds[SOUNDS_COUNT] = {
     "./assets/rifle.ogg",
     "./assets/machine.ogg",
 };
-

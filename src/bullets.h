@@ -1,10 +1,9 @@
 #ifndef BULLETS_H
-    #define BULLETS_H
+#define BULLETS_H
 
 #define BULLETS_COUNT 1000
 
 extern Entity bullets[BULLETS_COUNT];
-
 
 typedef struct BulletProperties {
     int is_flying;
@@ -19,9 +18,9 @@ typedef struct BulletProperties {
 extern BulletProperties bp[BULLETS_COUNT];
 
 Entity* get_free_bullet();
-void reset_bullet_properties(BulletProperties *bp);
+void reset_bullet_properties(BulletProperties* bp);
 void reset_bullets();
 
-void bullets_render(Engine *engine);
+void bullets_render(Engine* engine);
 
-    #endif /* BULLETS_H */
+#endif /* BULLETS_H */

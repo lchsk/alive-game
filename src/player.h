@@ -1,12 +1,7 @@
 #ifndef PLAYER_H
-    #define PLAYER_H
+#define PLAYER_H
 
-
-typedef enum {
-    GAME_STATE_HELP,
-    GAME_STATE_PLAY,
-    GAME_STATE_END
-} GameState;
+typedef enum { GAME_STATE_HELP, GAME_STATE_PLAY, GAME_STATE_END } GameState;
 
 typedef enum {
     WEAPON_PISTOL,
@@ -23,6 +18,6 @@ typedef struct PlayerState {
     double since_last_shot;
 } PlayerState;
 
-void rotate_player(Entity* player, Input *input);
+void rotate_player(Entity* player, Input* input);
 
-    #endif /* PLAYER_H */
+#endif /* PLAYER_H */

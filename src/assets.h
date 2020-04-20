@@ -1,6 +1,5 @@
 #ifndef ASSETS_H
-    #define ASSETS_H
-
+#define ASSETS_H
 
 enum {
     TEX_TILE_1,
@@ -34,14 +33,12 @@ enum {
     TEXTURES_COUNT,
 };
 
-enum
-{
+enum {
     FONT_FREE_SANS_26,
     FONTS_COUNT,
 };
 
-enum
-{
+enum {
     PRELOADER_FONT_FREE_SANS_26,
     PRELOADER_FONTS_COUNT,
 };
@@ -68,5 +65,4 @@ extern int preloader_fonts_sizes[PRELOADER_FONTS_COUNT];
 extern char* music[MUSIC_COUNT];
 extern char* sounds[SOUNDS_COUNT];
 
-
-    #endif /* ASSETS_H */
+#endif /* ASSETS_H */

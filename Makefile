@@ -35,7 +35,7 @@ GAME_SRC = \
     ${GAME_DIR}/enemies.c \
     ${ENGINE_SRC}
 
-.PHONY: game web release_web
+.PHONY: game web release_web format_src
 
 game:
 	$(CC) -I ${ENGINE_DIR_MAIN} ${GAME_SRC} ${CFLAGS} -o ${BIN} ${LIBS}
@@ -47,3 +47,6 @@ release_web:
 	mkdir -p release_web
 	cp alive.data alive.js alive.wasm web/index.html ./release_web
 	zip -r alive_release_web.zip release_web
+
+format_src:
+	clang-format -i ./src/*

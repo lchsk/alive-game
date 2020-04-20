@@ -1,5 +1,5 @@
 #ifndef CONFIG_H
-    #define CONFIG_H
+#define CONFIG_H
 
 #define ENEMY_BULLET_SPEED 0.35
 #define ENEMY_SHOT_INTERVAL_MS 1500
@@ -35,4 +35,4 @@
 #define MUSIC_VOLUME 1.0
 #define SOUND_VOLUME 0.7
 
-    #endif /* CONFIG_H */
+#endif /* CONFIG_H */
