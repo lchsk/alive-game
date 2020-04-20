@@ -1,16 +1,14 @@
 # Alive: the game
 
-### Ludum Dare 46 game jam submission.
-
-Ludum Dare 46 link: https://ldjam.com/events/ludum-dare/46/$200519
-
 Top-down survival shooter: survive as long as you can!
+
+### Ludum Dare 46 game jam submission.
 
 **Play it here**: https://lchsk.itch.io/alive
 
-Game play video:
+Ludum Dare 46 link: https://ldjam.com/events/ludum-dare/46/$200519
 
-https://youtu.be/RhdIpSkOQgM
+Game play video: https://youtu.be/RhdIpSkOQgM
 
 ## Screenshots
 
