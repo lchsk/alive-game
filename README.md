@@ -4,9 +4,11 @@ Top-down survival shooter: survive as long as you can!
 
 ### Ludum Dare 46 game jam submission.
 
-**Play it here**: https://lchsk.itch.io/alive
+**Play it here**: https://lchsk.com/alive_game
 
 Ludum Dare 46 link: https://ldjam.com/events/ludum-dare/46/$200519
+
+Blog article: https://lchsk.com/building-a-video-game-in-c-for-a-weekend-game-jam.html
 
 Game play video: https://youtu.be/RhdIpSkOQgM
 
