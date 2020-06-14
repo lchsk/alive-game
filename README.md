@@ -31,6 +31,7 @@ ESC to quit
 ## How to build
 
 It uses the game engine: https://github.com/lchsk/engine212
+Use v1.0 tag of the engine to build the game.
 
 To build you'll need a C compiler and installed SDL libraries.
 
