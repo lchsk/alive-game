@@ -6,8 +6,8 @@ CFLAGS += -std=c99 -pedantic -Wall -O0
 
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
 
-ENGINE_DIR = ../engine212/engine212
-ENGINE_DIR_MAIN = ../engine212
+ENGINE_DIR = ../cunctator/cunctator
+ENGINE_DIR_MAIN = ../cunctator
 
 ENGINE_SRC = \
     ${ENGINE_DIR}/list.c \
